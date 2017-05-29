@@ -25,7 +25,7 @@
 
 class sc_nginx (
   $supervisor_init_script = '/etc/supervisor.init/supervisor-init-wrapper',
-  $supervisor_conf_script = '/etc/supervisor.d/redis.conf',
+  $supervisor_conf_script = '/etc/supervisor.d/nginx.conf',
   $supervisor_exec_path   = '/usr/local/bin',
 ) {
 
