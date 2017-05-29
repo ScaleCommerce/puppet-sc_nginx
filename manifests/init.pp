@@ -32,6 +32,9 @@ class sc_nginx (
   include nginx
 
   # supervisor
+  file { '/etc/init/nginx.conf':
+    ensure => absent,
+  }->
   file { '/etc/init.d/nginx':
     ensure => link,
     target => $supervisor_init_script,
