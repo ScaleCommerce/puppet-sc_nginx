@@ -5,14 +5,9 @@
 #
 # === Variables
 #
-# [*supervisor_init_script*]
-#  full path to supervisor init wrapper script
-#
-# [*supervisor_conf_script*
-#  full path to supervisor conf script
-#
-# [*supervisor_exec_path*]
-#  path to supervisor executable
+# [*use_supervisor*]
+#   can be true or false, default is true.
+#   determines if start script should be used with supervisor
 #
 # === Authors
 #
@@ -24,32 +19,15 @@
 #
 
 class sc_nginx (
-  $supervisor_init_script = '/etc/supervisor.init/supervisor-init-wrapper',
-  $supervisor_conf_script = '/etc/supervisor.d/nginx.conf',
-  $supervisor_exec_path   = '/usr/local/bin',
+  $use_supervisor = true,
 ) {
+
+  if $use_supervisor {
+
+    class {'::sc_nginx::supervisor':}
+
+  }
 
   include nginx
 
-  # supervisor
-  file { '/etc/init/nginx.conf':
-    ensure => absent,
-  }->
-  file { '/etc/init.d/nginx':
-    ensure => link,
-    target => $supervisor_init_script,
-  }
-
-  file { $supervisor_conf_script:
-    owner   => 'root',
-    group   => 'root',
-    mode    => '0644',
-    content => template("${module_name}/nginx.supervisor.conf.erb"),
-    notify  => Exec['supervisorctl_nginx_update'],
-  }
-
-  exec {'supervisorctl_nginx_update':
-    command     => "${supervisor_exec_path}/supervisorctl update",
-    refreshonly => true,
-  }
 }
