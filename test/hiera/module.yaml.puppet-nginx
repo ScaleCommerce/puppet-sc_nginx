@@ -11,7 +11,7 @@ apt::ppas:
 ######################################################
 nginx::nginx_servers:
   '01-default':
-    vhost_cfg_prepend:
+    server_cfg_prepend:
       'set $sc_customer': 'ScaleCommerce'
     www_root: /var/www/default
     listen_options: default_server
@@ -19,7 +19,7 @@ nginx::nginx_servers:
     access_log: 'off'
     error_log:  'off'
   'www.example.com':
-    vhost_cfg_prepend:
+    server_cfg_prepend:
       'set $sc_customer': 'ExampleCustomer'
     www_root: /var/www/www.example.com
     server_name: ['www.example.com']
@@ -56,7 +56,7 @@ nginx::nginx_servers:
 nginx::package_name: 'nginx-extras'
 nginx::configtest_enable: true
 nginx::service_restart: 'nginx -t && service nginx restart'
-nginx::vhost_purge: true
+nginx::server_purge: true
 nginx::gzip_proxied: 'any'
 nginx::gzip_vary: 'on'
 nginx::gzip_types: text/plain text/css application/x-javascript text/xml application/xml application/xml+rss text/javascript application/javascript application/json'
