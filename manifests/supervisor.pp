@@ -3,10 +3,17 @@ class sc_nginx::supervisor(
 ){
 
   include sc_supervisor
+  include nginx
 
   file { '/etc/init.d/nginx':
     ensure => link,
     target => "${sc_supervisor::init_path}/supervisor-init-wrapper",
+    require => Package[$::nginx::package_name],
+  }
+
+  file { '/etc/init/nginx.conf':
+    ensure => absent,
+    require => Package[$::nginx::package_name],
   }
 
   file { "${supervisord::config_include}/nginx.conf":
