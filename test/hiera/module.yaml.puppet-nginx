@@ -1,0 +1,124 @@
+---
+classes:
+  - apt
+  - sc_nginx
+  - logrotate
+apt::ppas:
+  'ppa:nginx/development':
+    ensure: present
+######################################################
+# NGINX VHOSTS                                       #
+######################################################
+nginx::nginx_servers:
+  '01-default':
+    vhost_cfg_prepend:
+      'set $sc_customer': 'ScaleCommerce'
+    www_root: /var/www/default
+    listen_options: default_server
+    server_name: ['default']
+    access_log: 'off'
+    error_log:  'off'
+  'www.example.com':
+    vhost_cfg_prepend:
+      'set $sc_customer': 'ExampleCustomer'
+    www_root: /var/www/www.example.com
+    server_name: ['www.example.com']
+######################################################
+# NGINX UPSTREAMS                                    #
+######################################################
+#nginx::nginx_upstreams:
+#  <upstream>:
+#    upstream_cfg_prepend:
+#      keepalive: 2
+#    members:
+#      - <IP>
+#  consul:
+#    upstream_cfg_prepend:
+#      keepalive: 1
+#    members:
+#      - <IP 1>:8500 # consul1
+#      - <IP 2>:8500 backup # consul2
+#      - <IP 3>:8500 backup # consul3
+#  master:
+#    upstream_cfg_prepend:
+#      keepalive: 4
+#    members:
+#      - <IP> # master
+######################################################
+# NGINX LOCATIONS                                    #
+######################################################
+#nginx::nginx_locations:
+#  '<NAME>':
+#    location: '~* ^/(admin|export|out/admin|core)/'
+#    vhost: <VHOST>
+#    proxy: 'http://<PROXY>'
+#    priority: 401
+nginx::package_name: 'nginx-extras'
+nginx::configtest_enable: true
+nginx::service_restart: 'nginx -t && service nginx restart'
+nginx::vhost_purge: true
+nginx::gzip_proxied: 'any'
+nginx::gzip_vary: 'on'
+nginx::gzip_types: text/plain text/css application/x-javascript text/xml application/xml application/xml+rss text/javascript application/javascript application/json'
+nginx::gzip_buffers: '8 128k'
+nginx::worker_rlimit_nofile: 65536
+nginx::worker_processes: '4'
+nginx::worker_connections: 8192
+nginx::events_use: 'epoll'
+nginx::multi_accept: 'on'
+nginx::http_tcp_nopush: 'on'
+nginx::keepalive_timeout: '65'
+nginx::client_max_body_size: '50M'
+nginx::proxy_buffers: '8 128k'
+nginx::proxy_buffer_size: '128k'
+nginx::proxy_headers_hash_bucket_size: '128'
+nginx::server_tokens: 'off'
+nginx::nginx_cfg_prepend:
+  include: /etc/nginx/modules-enabled/*.conf
+nginx::http_cfg_append:
+  set_real_ip_from: '10.99.0.0/24'
+  real_ip_header: 'X-REAL-IP'
+  client_header_buffer_size: '2k'
+  large_client_header_buffers: '2 8k'
+  output_buffers: '8 128k'
+  postpone_output: 0
+  gunzip: 'on'
+  proxy_http_version: '1.1'
+  ignore_invalid_headers: 'on'
+  proxy_next_upstream: 'error timeout invalid_header http_500 http_502 http_503 http_504'
+  proxy_busy_buffers_size: '512k'
+  proxy_temp_file_write_size: '512k'
+  proxy_intercept_errors: 'on'
+  proxy_cache_use_stale: 'error timeout updating invalid_header http_500 http_502 http_503 http_504'
+  proxy_cache_lock: 'on'
+  proxy_cache_lock_timeout: '3s'
+  proxy_cache_lock_age: '3s'
+  proxy_headers_hash_max_size: '1024'
+  proxy_hide_header: 'X-Powered-By'
+#  proxy_cache_path: '/var/www/cache/<CUSTOMER> levels=1:2 keys_zone=<CUSTOMER>:100m inactive=30d max_size=1G'
+nginx::proxy_set_header:
+  - 'Host $host'
+  - 'X-Real-IP $http_x_real_ip'
+  - 'X-Forwarded-For $proxy_add_x_forwarded_for'
+  - 'X-Forwarded-Proto $http_x_forwarded_proto'
+  - 'HTTPS $http_https'
+  - 'Accept-Encoding "gzip,deflate"'
+  - 'Connection ""'
+  - 'X-Country-Code $http_x_country_code'
+  - 'Proxy ""'
+
+logrotate::rules:
+  nginx:
+    path: '/var/log/nginx/*log'
+    rotate: 7
+    rotate_every: 'day'
+    compress: true
+    missingok: true
+    delaycompress: false
+    ifempty: false
+    create: true
+    create_owner: 'www-data'
+    create_group: 'adm'
+    create_mode: '640'
+    sharedscripts: true
+    postrotate: 'service nginx reload >/dev/null 2>&1'

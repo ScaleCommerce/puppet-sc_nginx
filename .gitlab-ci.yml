@@ -1,8 +1,18 @@
 image: scalecommerce/base:0.6
 
-test:ubuntu-14.04:
+test:ubuntu-14.04:jfryman-nginx:
   script:
   - ./test/install.sh
+  - puppet module install jfryman-nginx
+  - mv ./test/hiera/module.yaml.jfryman-nginx  ./test/hiera/module.yaml
   - puppet apply -v test/site.pp
+  - puppet apply -v test/site.pp
+  - inspec exec test/inspec/sc_nginx.rb
+
+test:ubuntu-14.04:puppet-nginx:
+  script:
+  - ./test/install.sh
+  - puppet module install puppet-nginx
+  - mv ./test/hiera/module.yaml.puppet-nginx  ./test/hiera/module.yaml
   - puppet apply -v test/site.pp
   - inspec exec test/inspec/sc_nginx.rb
