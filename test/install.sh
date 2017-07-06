@@ -1,6 +1,7 @@
 #!/bin/bash
 sed -i -e "s/nodaemon=true/nodaemon=false/" /etc/supervisord.conf
 /usr/local/bin/supervisord -c /etc/supervisord.conf
+apt-get update
 apt-get install apt-transport-https
 puppet module install ajcrowe-supervisord
 puppet module install yo61-logrotate
