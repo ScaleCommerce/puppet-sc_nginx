@@ -18,6 +18,12 @@ nginx::nginx_vhosts:
     server_name: ['default']
     access_log: 'off'
     error_log:  'off'
+    locations:
+      status:
+        location: /status
+        stub_status: true
+        location_allow: 127.0.0.1
+        location_deny: all
   'www.example.com':
     vhost_cfg_prepend:
       'set $sc_customer': 'ExampleCustomer'

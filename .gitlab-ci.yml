@@ -1,6 +1,6 @@
 image: scalecommerce/base:0.6
 
-test:ubuntu-14.04:jfryman-nginx:
+test:jfryman-nginx:ubuntu-14.04:
   script:
   - ./test/install.sh
   - puppet module install jfryman-nginx
@@ -9,7 +9,7 @@ test:ubuntu-14.04:jfryman-nginx:
   - puppet apply -v test/site.pp
   - inspec exec test/inspec/sc_nginx.rb
 
-test:ubuntu-14.04:puppet-nginx:
+test:puppet-nginx:ubuntu-14.04:
   script:
   - ./test/install.sh
   - puppet module install puppet-nginx
