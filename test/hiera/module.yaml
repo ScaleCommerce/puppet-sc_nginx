@@ -11,7 +11,7 @@ apt::ppas:
 ######################################################
 nginx::nginx_vhosts:
   '01-default':
-    server_cfg_prepend:
+    vhost_cfg_prepend:
       'set $sc_customer': 'ScaleCommerce'
     www_root: /var/www/default
     listen_options: default_server
@@ -19,7 +19,7 @@ nginx::nginx_vhosts:
     access_log: 'off'
     error_log:  'off'
   'www.example.com':
-    server_cfg_prepend:
+    vhost_cfg_prepend:
       'set $sc_customer': 'ExampleCustomer'
     www_root: /var/www/www.example.com
     server_name: ['www.example.com']
