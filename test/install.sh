@@ -8,7 +8,7 @@ curl https://omnitruck.chef.io/install.sh | sudo bash -s -- -P inspec
 ln -sf /builds/sc-puppet/puppet-sc_nginx/test/hiera.yaml /etc/puppet/
 ln -sf /builds/sc-puppet/puppet-sc_nginx/test/Puppetfile /etc/puppet/
 ln -sf /builds/sc-puppet/puppet-sc_nginx/test/hiera /var/lib/hiera
-ln -sf /builds/sc-puppet/puppet-sc_nginx//etc/puppet/modules/sc_nginx
+ln -sf /builds/sc-puppet/puppet-sc_nginx/ /etc/puppet/modules/sc_nginx
 cd /etc/puppet ; librarian-puppet install
 curl https://gitlab.scale.sc/scalecommerce/postinstall/raw/master/puppet.conf.sample > /etc/puppet/puppet.conf
 puppet config set certname puppet-test.scalecommerce
