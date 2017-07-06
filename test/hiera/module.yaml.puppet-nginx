@@ -22,8 +22,8 @@ nginx::nginx_servers:
       status:
         location: /status
         stub_status: true
-        location_allow: 127.0.0.1
-        location_deny: all
+        location_allow: ['127.0.0.1']
+        location_deny: ['all']
   'www.example.com':
     server_cfg_prepend:
       'set $sc_customer': 'ExampleCustomer'
