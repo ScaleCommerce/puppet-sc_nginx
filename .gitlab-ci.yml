@@ -1,0 +1,8 @@
+image: scalecommerce/base:0.6
+
+test:ubuntu-14.04:
+  script:
+  - ./test/install.sh
+  - puppet apply -v test/site.pp
+  - puppet apply -v test/site.pp
+  - inspec exec test/inspec/sc_apache.rb
