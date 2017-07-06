@@ -5,4 +5,4 @@ test:ubuntu-14.04:
   - ./test/install.sh
   - puppet apply -v test/site.pp
   - puppet apply -v test/site.pp
-  - inspec exec test/inspec/sc_apache.rb
+  - inspec exec test/inspec/sc_nginx.rb
