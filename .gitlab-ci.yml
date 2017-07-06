@@ -5,4 +5,5 @@ test:ubuntu-14.04:
   - ./test/install.sh
   - puppet apply -v test/site.pp
   - puppet apply -v test/site.pp
+  - ps ax | grep nginx
   - inspec exec test/inspec/sc_nginx.rb
