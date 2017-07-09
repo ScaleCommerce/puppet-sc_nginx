@@ -2,7 +2,6 @@ image: scalecommerce/base:0.6
 
 test:jfryman-nginx:ubuntu-14.04:
   script:
-  - printenv
   - ./test/install.sh
   - puppet module install jfryman-nginx
   - mv ./test/hiera/module.yaml.jfryman-nginx  ./test/hiera/module.yaml
