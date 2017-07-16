@@ -25,10 +25,19 @@ nginx::nginx_servers:
         location_allow: ['127.0.0.1']
         location_deny: ['all']
   'www.example.com':
-    server_cfg_prepend:
-      'set $sc_customer': 'ExampleCustomer'
     www_root: /var/www/www.example.com
     server_name: ['www.example.com']
+  'custom-port-9200':
+    listen_port: 9200
+    www_root: /var/www/custom-port-9200
+    server_name: ['custom-port-9200']
+  'proxy-source':
+    server_name: ['proxy-source']
+    proxy: http://127.0.0.1:8080
+  'proxy-target':
+    listen_port: 8080
+    www_root: /var/www/proxy-target
+    server_name: ['proxy-target']
 ######################################################
 # NGINX UPSTREAMS                                    #
 ######################################################
