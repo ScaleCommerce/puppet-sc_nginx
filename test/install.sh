@@ -11,6 +11,6 @@ ln -sf /builds/sc-puppet/puppet-sc_nginx/test/hiera.yaml /etc/puppet/
 ln -sf /builds/sc-puppet/puppet-sc_nginx/test/Puppetfile /etc/puppet/
 ln -sf /builds/sc-puppet/puppet-sc_nginx/test/hiera /var/lib/hiera
 ln -sf /builds/sc-puppet/puppet-sc_nginx/ /etc/puppet/modules/sc_nginx
-curl -s https://gitlab.scale.sc/scalecommerce/postinstall/raw/master/puppet.conf.sample > /etc/puppet/puppet.conf
+curl -s https://gitlab.scale.sc/scalecommerce/postinstall/raw/master/puppet.conf > /etc/puppet/puppet.conf
 ln -sf /builds/sc-puppet/puppet-sc_nginx/test/document_roots /var/www
 puppet config set certname puppet-test.scalecommerce
