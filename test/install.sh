@@ -7,7 +7,7 @@ puppet module install ajcrowe-supervisord
 puppet module install yo61-logrotate
 puppet module install dskad-supervisor_provider
 git clone http://github.com/ScaleCommerce/puppet-sc_supervisor.git /etc/puppet/modules/sc_supervisor
-curl -s https://omnitruck.chef.io/install.sh | sudo bash -s -- -P inspec
+curl -s https://omnitruck.chef.io/install.sh | bash -s -- -P inspec
 ln -sf /builds/sc-puppet/puppet-sc_nginx/test/hiera.yaml /etc/puppet/
 ln -sf /builds/sc-puppet/puppet-sc_nginx/test/Puppetfile /etc/puppet/
 ln -sf /builds/sc-puppet/puppet-sc_nginx/test/hiera /var/lib/hiera
