@@ -5,7 +5,6 @@ apt-get update
 apt-get install apt-transport-https
 puppet module install ajcrowe-supervisord
 puppet module install yo61-logrotate
-#puppet module install dskad-supervisor_provider
 git clone https://github.com/ScaleCommerce/puppet-sc_supervisor.git /etc/puppet/modules/sc_supervisor
 git clone https://github.com/ScaleCommerce/puppet-supervisor_provider.git /etc/puppet/modules/supervisor_provider
 curl -s https://omnitruck.chef.io/install.sh | bash -s -- -P inspec

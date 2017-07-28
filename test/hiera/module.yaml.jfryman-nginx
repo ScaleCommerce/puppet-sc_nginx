@@ -69,7 +69,6 @@ nginx::nginx_vhosts:
 #    proxy: 'http://<PROXY>'
 #    priority: 401
 nginx::package_name: 'nginx-extras'
-nginx::configtest_enable: true
 nginx::service_restart: 'nginx -t && nginx -s reload'
 nginx::config::vhost_purge: true
 nginx::config::gzip_proxied: 'any'
@@ -136,4 +135,4 @@ logrotate::rules:
     create_group: 'adm'
     create_mode: '640'
     sharedscripts: true
-    postrotate: 'service nginx reload >/dev/null 2>&1'
+    postrotate: '/usr/sbin/nginx -s reopen >/dev/null 2>&1'
