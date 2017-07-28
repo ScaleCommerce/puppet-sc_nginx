@@ -14,6 +14,7 @@ class sc_nginx::supervisor(
     autostart   => true,
     autorestart => true,
     require     => Package[$nginx::package_name],
+    before      => Service['nginx'],
   }~>
   # reload nginx config only if startet for the first time
   # because of order conflict between supervisor and nginx modules

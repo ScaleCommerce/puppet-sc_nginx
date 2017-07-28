@@ -1,7 +1,0 @@
-# THIS FILE IS CREATED BY PUPPET - SC_NGINX MODULE BY SCALECOMMERCE
-[program:nginx]
-command=/bin/bash -c "source /etc/default/nginx && /usr/sbin/nginx -g 'daemon off; master_process on;'"
-auto_start=true
-autorestart=true
-stopasgroup=true
-stopsignal=QUIT

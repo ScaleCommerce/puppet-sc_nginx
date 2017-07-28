@@ -3,5 +3,5 @@ backends:
 :yaml:
  :datadir: /builds/sc-puppet/puppet-sc_nginx/test/hiera
 :hierarchy:
- - global
+ - override
  - module

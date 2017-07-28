@@ -1,0 +1,12 @@
+---
+classes:
+  - apt
+  - sc_nginx
+
+######################################################
+# NGINX VHOSTS                                       #
+######################################################
+nginx::nginx_servers:
+  'www.example-override.com':
+    www_root: /var/www/www.example-override.com
+    server_name: ['www.example-override.com']

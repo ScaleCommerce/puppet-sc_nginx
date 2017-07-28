@@ -9,6 +9,11 @@ describe port(80) do
   its('processes') {should include 'nginx'}
 end
 
+# nginx running in supervisor?
+describe command('supervisorctl status nginx') do
+  its('stdout') { should match 'RUNNING'}
+end
+
 # server-status module enabled?
 describe http('http://localhost/status') do
   its('status') { should cmp 200 }
