@@ -7,6 +7,10 @@ test:ubuntu-14.04:puppet-nginx:
   - mv ./test/hiera/module.yaml.puppet-nginx  ./test/hiera/module.yaml
   - puppet apply -v test/site.pp
   - inspec exec test/inspec/sc_nginx.rb
+  - mv ./test/hiera/override.yaml.puppet-nginx  ./test/hiera/override.yaml
+  - puppet apply -vd test/site.pp
+  - inspec exec test/inspec/sc_nginx.rb
+  - inspec exec test/inspec/sc_nginx_override.rb
 
 test:ubuntu-14.04:jfryman-nginx:
   image: scalecommerce/base:0.6
@@ -16,6 +20,23 @@ test:ubuntu-14.04:jfryman-nginx:
   - mv ./test/hiera/module.yaml.jfryman-nginx  ./test/hiera/module.yaml
   - puppet apply -v test/site.pp
   - inspec exec test/inspec/sc_nginx.rb
+  - mv ./test/hiera/override.yaml.jfryman-nginx  ./test/hiera/override.yaml
+  - puppet apply -vd test/site.pp
+  - inspec exec test/inspec/sc_nginx.rb
+  - inspec exec test/inspec/sc_nginx_override.rb
+
+test:ubuntu-16.04:puppet-nginx:
+  image: scalecommerce/xenial:1.0
+  script:
+  - ./test/install.sh
+  - puppet module install puppet-nginx
+  - mv ./test/hiera/module.yaml.puppet-nginx  ./test/hiera/module.yaml
+  - puppet apply -v test/site.pp
+  - inspec exec test/inspec/sc_nginx.rb
+  - mv ./test/hiera/override.yaml.puppet-nginx  ./test/hiera/override.yaml
+  - puppet apply -vd test/site.pp
+  - inspec exec test/inspec/sc_nginx.rb
+  - inspec exec test/inspec/sc_nginx_override.rb
 
 test:ubuntu-16.04:jfryman-nginx:
   image: scalecommerce/xenial:1.0
@@ -27,15 +48,7 @@ test:ubuntu-16.04:jfryman-nginx:
   - whereis nginx
   - nginx -v
   - inspec exec test/inspec/sc_nginx.rb
-
-test:ubuntu-16.04:puppet-nginx:
-  image: scalecommerce/xenial:1.0
-  script:
-  - ./test/install.sh
-  - puppet module install puppet-nginx
-  - mv ./test/hiera/module.yaml.puppet-nginx  ./test/hiera/module.yaml
-  - puppet apply -v test/site.pp
-  - inspec exec test/inspec/sc_nginx.rb
   - mv ./test/hiera/override.yaml.jfryman-nginx  ./test/hiera/override.yaml
+  - puppet apply -vd test/site.pp
   - inspec exec test/inspec/sc_nginx.rb
   - inspec exec test/inspec/sc_nginx_override.rb
