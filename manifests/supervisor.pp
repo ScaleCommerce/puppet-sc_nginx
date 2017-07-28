@@ -23,5 +23,6 @@ class sc_nginx::supervisor(
   #override puppet service provider to supervisor
   Service <| title == "nginx" |> {
     provider => supervisor,
+    restart => "nginx -t && nginx -s reload",
   }
 }
