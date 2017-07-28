@@ -24,8 +24,13 @@ test:jfryman-nginx:ubuntu-16.04:
   - ./test/install.sh
   - puppet module install jfryman-nginx
   - mv ./test/hiera/module.yaml.jfryman-nginx  ./test/hiera/module.yaml
-  - puppet apply -v test/site.pp
-  - puppet apply -v test/site.pp
+  - puppet apply -vd test/site.pp
+  - puppet apply -vd test/site.pp
+  - supervisorctl status
+  - ps ax |grep nginx
+  - curl -s -I localhost/status
+  - nginx -s reload
+  - curl -s -I localhost/status
   - inspec exec test/inspec/sc_nginx.rb
 
 test:puppet-nginx:ubuntu-16.04:
@@ -37,7 +42,7 @@ test:puppet-nginx:ubuntu-16.04:
   - puppet apply -vd test/site.pp
   - supervisorctl status
   - ps ax |grep nginx
-  - curl -I localhost/status
+  - curl -s -I localhost/status
   - nginx -s reload
-  - curl -I localhost/status
+  - curl -s -I localhost/status
   - inspec exec test/inspec/sc_nginx.rb
