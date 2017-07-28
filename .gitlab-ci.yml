@@ -37,4 +37,7 @@ test:puppet-nginx:ubuntu-16.04:
   - puppet apply -v test/site.pp
   - supervisorctl status
   - ps ax |grep nginx
+  - curl -I localhost/status
+  - nginx -s reload
+  - curl -I localhost/status
   - inspec exec test/inspec/sc_nginx.rb
