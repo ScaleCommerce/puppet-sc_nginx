@@ -70,7 +70,7 @@ nginx::nginx_servers:
 #    priority: 401
 nginx::package_name: 'nginx-extras'
 nginx::configtest_enable: true
-nginx::service_restart: 'nginx -t && service nginx restart'
+nginx::service_restart: 'nginx -t && nginx -s reload'
 nginx::server_purge: true
 nginx::gzip_proxied: 'any'
 nginx::gzip_vary: 'on'
