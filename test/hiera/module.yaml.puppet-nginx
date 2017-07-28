@@ -69,7 +69,7 @@ nginx::nginx_servers:
 #    proxy: 'http://<PROXY>'
 #    priority: 401
 nginx::package_name: 'nginx-extras'
-nginx::service_restart: 'nginx -t && nginx -s reload'
+nginx::service_restart: '/usr/sbin/nginx -t && /usr/sbin/nginx -s reload'
 nginx::server_purge: true
 nginx::gzip_proxied: 'any'
 nginx::gzip_vary: 'on'

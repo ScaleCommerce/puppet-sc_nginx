@@ -4,9 +4,9 @@
 
 1. [Overview](#overview)
 2. [Module Description - What the module does and why it is useful](#module-description)
-3. [Setup - The basics of getting started with sc_redis](#setup)
+3. [Setup - The basics of getting started with sc_nginx](#setup)
     * [What sc_nginx affects](#what-sc_nginx-affects)
-    * [Beginning with sc_redis](#beginning-with-sc_redis)
+    * [Beginning with sc_nginx](#beginning-with-sc_redis)
 4. [Usage - Configuration options and additional functionality](#usage)
 4. [Testing with InSpec](#testing)
 
@@ -36,11 +36,11 @@ Check out our solultion for Puppet-Hiera-Roles (https://github.com/ScaleCommerce
 
 Put this into your node.yaml or role.yaml.
 
-``` 
+```
 ---
 classes:
   - sc_nginx
-  
+
 ```
 
 ## Testing
@@ -68,9 +68,14 @@ sudo chmod +x /usr/local/bin/gitlab-ci-multi-runner-sc
 1. execute in your working copy
 
 ```bash
-# jfryman-nginx
-gitlab-ci-multi-runner-sc exec docker --docker-volumes `pwd`:/tmp/local-working-directory test:jfryman-nginx:ubuntu-14.04
+# jfryman-nginx on ubuntu 14.04
+gitlab-ci-multi-runner-sc exec docker --docker-volumes `pwd`:/tmp/local-working-directory test:test:ubuntu-14.04:jfryman-nginx
+# jfryman-nginx on ubuntu 16.04
+gitlab-ci-multi-runner-sc exec docker --docker-volumes `pwd`:/tmp/local-working-directory test:test:ubuntu-16.04:jfryman-nginx
 
-# puppet-nginx
-gitlab-ci-multi-runner-sc exec docker --docker-volumes `pwd`:/tmp/local-working-directory test:puppet-nginx:ubuntu-14.04
+# puppet-nginx  on ubuntu 14.04
+gitlab-ci-multi-runner-sc exec docker --docker-volumes `pwd`:/tmp/local-working-directory test:test:ubuntu-14.04:puppet-nginx
+# puppet-nginx on ubuntu 16.04
+gitlab-ci-multi-runner-sc exec docker --docker-volumes `pwd`:/tmp/local-working-directory test:test:ubuntu-16.04:puppet-nginx
+
 ```

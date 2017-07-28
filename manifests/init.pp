@@ -29,8 +29,26 @@ class sc_nginx (
 
   include nginx
 
-  # this is only needed as a fix for jfryman-nginx module
+  # this block is needed to fix missing hiera_hash support of puppet-nginx module
+  if defined('nginx::resource::geo_mapping') {
+    ensure_resources('nginx::resource::geo_mapping', hiera_hash('nginx::geo_mappings', {}))
+  }
+  if defined('nginx::resource::string_mapping') {
+    ensure_resources('nginx::resource::string_mapping', hiera_hash('nginx::string_mappings', {}))
+  }
+  if defined('nginx::resource::location') {
+    ensure_resources('nginx::resource::location', hiera_hash('nginx::nginx_locations', {}), hiera_hash('nginx::nginx_locations_defaults', {}))
+  }
+  if defined('nginx::resource::upstream') {
+    ensure_resources('nginx::resource::upstream', hiera_hash('nginx::nginx_upstreams', {}))
+  }
+  if defined('nginx::resource::server') {
+    ensure_resources('nginx::resource::server', hiera_hash('nginx::nginx_servers', {}), hiera_hash('nginx::nginx_servers_defaults', {}))
+  }
+
+  # this is only needed as a fix for jfryman-nginx module [deprecated]
   if defined('nginx::resource::vhost') {
     Class['apt::update'] -> Package[$nginx::package_name] -> Nginx::Resource::Vhost <| |>
+    ensure_resources('nginx::resource::vhost', hiera_hash('nginx::nginx_vhosts', {}), hiera_hash('nginx::nginx_vhosts_defaults', {}))
   }
 }

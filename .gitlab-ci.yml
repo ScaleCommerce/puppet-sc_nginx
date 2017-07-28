@@ -8,7 +8,7 @@ test:ubuntu-14.04:puppet-nginx:
   - puppet apply -v test/site.pp
   - inspec exec test/inspec/sc_nginx.rb
   - mv ./test/hiera/override.yaml.puppet-nginx  ./test/hiera/override.yaml
-  - puppet apply -vd test/site.pp
+  - puppet apply -v test/site.pp
   - inspec exec test/inspec/sc_nginx.rb
   - inspec exec test/inspec/sc_nginx_override.rb
 
@@ -21,7 +21,7 @@ test:ubuntu-14.04:jfryman-nginx:
   - puppet apply -v test/site.pp
   - inspec exec test/inspec/sc_nginx.rb
   - mv ./test/hiera/override.yaml.jfryman-nginx  ./test/hiera/override.yaml
-  - puppet apply -vd test/site.pp
+  - puppet apply -v test/site.pp
   - inspec exec test/inspec/sc_nginx.rb
   - inspec exec test/inspec/sc_nginx_override.rb
 
@@ -34,7 +34,7 @@ test:ubuntu-16.04:puppet-nginx:
   - puppet apply -v test/site.pp
   - inspec exec test/inspec/sc_nginx.rb
   - mv ./test/hiera/override.yaml.puppet-nginx  ./test/hiera/override.yaml
-  - puppet apply -vd test/site.pp
+  - puppet apply -v test/site.pp
   - inspec exec test/inspec/sc_nginx.rb
   - inspec exec test/inspec/sc_nginx_override.rb
 
@@ -45,10 +45,8 @@ test:ubuntu-16.04:jfryman-nginx:
   - puppet module install jfryman-nginx
   - mv ./test/hiera/module.yaml.jfryman-nginx  ./test/hiera/module.yaml
   - puppet apply -v test/site.pp
-  - whereis nginx
-  - nginx -v
   - inspec exec test/inspec/sc_nginx.rb
   - mv ./test/hiera/override.yaml.jfryman-nginx  ./test/hiera/override.yaml
-  - puppet apply -vd test/site.pp
+  - puppet apply -v test/site.pp
   - inspec exec test/inspec/sc_nginx.rb
   - inspec exec test/inspec/sc_nginx_override.rb
