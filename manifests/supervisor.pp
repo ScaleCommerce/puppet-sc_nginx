@@ -23,4 +23,8 @@ class sc_nginx::supervisor(
     content => template("${module_name}/nginx.supervisor.conf.erb"),
     notify  => Class[supervisord::reload],
   }
+
+  Service <| title == "nginx"|> {
+    provider => supervisor,
+  }
 }
