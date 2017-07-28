@@ -1,5 +1,8 @@
+stages:
+  - test
 
-test:ubuntu-14.04:puppet-nginx:
+ubuntu-14.04:puppet-nginx:
+  stage: test
   image: scalecommerce/base:0.6
   script:
   - ./test/install.sh
@@ -12,7 +15,8 @@ test:ubuntu-14.04:puppet-nginx:
   - inspec exec test/inspec/sc_nginx.rb
   - inspec exec test/inspec/sc_nginx_override.rb
 
-test:ubuntu-14.04:jfryman-nginx:
+ubuntu-14.04:jfryman-nginx:
+  stage: test
   image: scalecommerce/base:0.6
   script:
   - ./test/install.sh
@@ -25,7 +29,8 @@ test:ubuntu-14.04:jfryman-nginx:
   - inspec exec test/inspec/sc_nginx.rb
   - inspec exec test/inspec/sc_nginx_override.rb
 
-test:ubuntu-16.04:puppet-nginx:
+ubuntu-16.04:puppet-nginx:
+  stage: test
   image: scalecommerce/xenial:1.0
   script:
   - ./test/install.sh
@@ -38,7 +43,8 @@ test:ubuntu-16.04:puppet-nginx:
   - inspec exec test/inspec/sc_nginx.rb
   - inspec exec test/inspec/sc_nginx_override.rb
 
-test:ubuntu-16.04:jfryman-nginx:
+ubuntu-16.04:jfryman-nginx:
+  stage: test
   image: scalecommerce/xenial:1.0
   script:
   - ./test/install.sh
