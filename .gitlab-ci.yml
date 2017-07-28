@@ -35,4 +35,6 @@ test:puppet-nginx:ubuntu-16.04:
   - puppet module install puppet-nginx
   - mv ./test/hiera/module.yaml.puppet-nginx  ./test/hiera/module.yaml
   - puppet apply -v test/site.pp
+  - supervisorctl status
+  - ps ax |grep nginx
   - inspec exec test/inspec/sc_nginx.rb
