@@ -1,8 +1,8 @@
 stages:
-  - test
+  - Puppet 3
 
 14.04:puppet-nginx:
-  stage: test
+  stage: Puppet 3
   image: scalecommerce/base:0.6
   script:
   - ./test/install.sh
@@ -16,7 +16,7 @@ stages:
   - inspec exec test/inspec/sc_nginx_override.rb
 
 14.04:jfryman-nginx:
-  stage: test
+  stage: Puppet 3
   image: scalecommerce/base:0.6
   script:
   - ./test/install.sh
@@ -30,7 +30,7 @@ stages:
   - inspec exec test/inspec/sc_nginx_override.rb
 
 16.04:puppet-nginx:
-  stage: test
+  stage: Puppet 3
   image: scalecommerce/xenial:1.0
   script:
   - ./test/install.sh
@@ -44,7 +44,7 @@ stages:
   - inspec exec test/inspec/sc_nginx_override.rb
 
 16.04:jfryman-nginx:
-  stage: test
+  stage: Puppet 3
   image: scalecommerce/xenial:1.0
   script:
   - ./test/install.sh
