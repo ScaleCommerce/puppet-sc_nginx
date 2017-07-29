@@ -1,0 +1,11 @@
+---
+version: 5
+defaults:
+  datadir: /builds/sc-puppet/puppet-sc_nginx/test/hiera
+  data_hash: yaml_data
+
+hierarchy:
+  - name: Override Data
+    path: override.yaml
+  - name: Modul Data
+    path: module.yaml

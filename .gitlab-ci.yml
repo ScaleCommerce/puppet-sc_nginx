@@ -1,5 +1,6 @@
 stages:
   - Puppet 3
+  - Puppet 4
 
 14.04:puppet-nginx:
   stage: Puppet 3
@@ -53,6 +54,20 @@ stages:
   - puppet apply -v test/site.pp
   - inspec exec test/inspec/sc_nginx.rb
   - mv ./test/hiera/override.yaml.jfryman-nginx  ./test/hiera/override.yaml
+  - puppet apply -v test/site.pp
+  - inspec exec test/inspec/sc_nginx.rb
+  - inspec exec test/inspec/sc_nginx_override.rb
+
+16.04:puppet-nginx:puppet4:
+  stage: Puppet 4
+  image: scalecommerce/xenial:1.0
+  script:
+  - ./test/install-puppet4.sh
+  - puppet module install puppet-nginx
+  - mv ./test/hiera/module.yaml.puppet-nginx  ./test/hiera/module.yaml
+  - puppet apply -v test/site.pp
+  - inspec exec test/inspec/sc_nginx.rb
+  - mv ./test/hiera/override.yaml.puppet-nginx  ./test/hiera/override.yaml
   - puppet apply -v test/site.pp
   - inspec exec test/inspec/sc_nginx.rb
   - inspec exec test/inspec/sc_nginx_override.rb
