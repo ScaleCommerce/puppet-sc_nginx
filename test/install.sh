@@ -18,9 +18,3 @@ if ! dpkg-query -W apt-transport-https ; then
     apt-get update
     apt-get -y install --no-install-recommends apt-transport-https
 fi
-
-#fix for scalecommerce/xenial:1.0
-if ! dpkg-query -W python-pip ; then
-    apt-get update
-    apt-get -y install --no-install-recommends python-pip
-fi
