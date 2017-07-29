@@ -58,16 +58,62 @@ stages:
   - inspec exec test/inspec/sc_nginx.rb
   - inspec exec test/inspec/sc_nginx_override.rb
 
-16.04:puppet-nginx:puppet4:
+14.04:puppet-nginx:
   stage: Puppet 4
-  image: scalecommerce/xenial:1.0
+  image: scalecommerce/base:0.6
   script:
   - ./test/install-puppet4.sh
+  - export PATH=/opt/puppetlabs/bin:$PATH
   - puppet module install puppet-nginx
   - mv ./test/hiera/module.yaml.puppet-nginx  ./test/hiera/module.yaml
   - puppet apply -v test/site.pp
   - inspec exec test/inspec/sc_nginx.rb
   - mv ./test/hiera/override.yaml.puppet-nginx  ./test/hiera/override.yaml
+  - puppet apply -v test/site.pp
+  - inspec exec test/inspec/sc_nginx.rb
+  - inspec exec test/inspec/sc_nginx_override.rb
+
+14.04:jfryman-nginx:
+  stage: Puppet 4
+  image: scalecommerce/base:0.6
+  script:
+  - ./test/install-puppet4.sh
+  - export PATH=/opt/puppetlabs/bin:$PATH
+  - puppet module install jfryman-nginx
+  - mv ./test/hiera/module.yaml.jfryman-nginx  ./test/hiera/module.yaml
+  - puppet apply -v test/site.pp
+  - inspec exec test/inspec/sc_nginx.rb
+  - mv ./test/hiera/override.yaml.jfryman-nginx  ./test/hiera/override.yaml
+  - puppet apply -v test/site.pp
+  - inspec exec test/inspec/sc_nginx.rb
+  - inspec exec test/inspec/sc_nginx_override.rb
+
+16.04:puppet-nginx:
+  stage: Puppet 4
+  image: scalecommerce/xenial:1.0
+  script:
+  - ./test/install-puppet4.sh
+  - export PATH=/opt/puppetlabs/bin:$PATH
+  - puppet module install puppet-nginx
+  - mv ./test/hiera/module.yaml.puppet-nginx  ./test/hiera/module.yaml
+  - puppet apply -v test/site.pp
+  - inspec exec test/inspec/sc_nginx.rb
+  - mv ./test/hiera/override.yaml.puppet-nginx  ./test/hiera/override.yaml
+  - puppet apply -v test/site.pp
+  - inspec exec test/inspec/sc_nginx.rb
+  - inspec exec test/inspec/sc_nginx_override.rb
+
+16.04:jfryman-nginx:
+  stage: Puppet 4
+  image: scalecommerce/xenial:1.0
+  script:
+  - ./test/install-puppet4.sh
+  - export PATH=/opt/puppetlabs/bin:$PATH
+  - puppet module install jfryman-nginx
+  - mv ./test/hiera/module.yaml.jfryman-nginx  ./test/hiera/module.yaml
+  - puppet apply -v test/site.pp
+  - inspec exec test/inspec/sc_nginx.rb
+  - mv ./test/hiera/override.yaml.jfryman-nginx  ./test/hiera/override.yaml
   - puppet apply -v test/site.pp
   - inspec exec test/inspec/sc_nginx.rb
   - inspec exec test/inspec/sc_nginx_override.rb
