@@ -1,6 +1,7 @@
 stages:
   - Puppet 3
   - Puppet 4
+  - Puppet 5
 
 14.04:puppet-nginx:puppet3:
   stage: Puppet 3
