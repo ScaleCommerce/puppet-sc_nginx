@@ -16,7 +16,7 @@ ScaleCommerce Wrapper Module for puppet-nginx module. Manages Supervisord.
 
 ## Module Description
 
-This module uses hiera to configure supervisord config for nginx.
+This module uses hiera to configure supervisord and nginx. We're using upstream modules [voxpupuli/puppet-nginx](https://github.com/voxpupuli/puppet-nginx) and [ajcrowe/puppet-supervisord](https://github.com/ajcrowe/puppet-supervisord). This is compatible with Ubuntu 14.04, Ubuntu 16.04, Puppet 3, Puppet 4, Puppet 5.
 
 ## Setup
 
@@ -43,6 +43,8 @@ classes:
 
 ```
 
+Check out hiera config examples in [](test/hiera/module.yaml.puppet-nginx)
+
 ## Testing
 
 GitLab runner is activated to test after each push.
@@ -68,14 +70,18 @@ sudo chmod +x /usr/local/bin/gitlab-ci-multi-runner-sc
 1. execute in your working copy
 
 ```bash
-# jfryman-nginx on ubuntu 14.04
-gitlab-ci-multi-runner-sc exec docker --docker-volumes `pwd`:/tmp/local-working-directory test:test:ubuntu-14.04:jfryman-nginx
-# jfryman-nginx on ubuntu 16.04
-gitlab-ci-multi-runner-sc exec docker --docker-volumes `pwd`:/tmp/local-working-directory test:test:ubuntu-16.04:jfryman-nginx
-
-# puppet-nginx  on ubuntu 14.04
-gitlab-ci-multi-runner-sc exec docker --docker-volumes `pwd`:/tmp/local-working-directory test:test:ubuntu-14.04:puppet-nginx
-# puppet-nginx on ubuntu 16.04
-gitlab-ci-multi-runner-sc exec docker --docker-volumes `pwd`:/tmp/local-working-directory test:test:ubuntu-16.04:puppet-nginx
-
+gitlab-ci-multi-runner-sc exec docker --docker-volumes `pwd`:/tmp/local-working-directory <TEST>
 ```
+
+The following tests are available:
+`14.04:jfryman-nginx:puppet3`
+`16.04:puppet-nginx:puppet3`
+`16.04:jfryman-nginx:puppet3`
+`14.04:puppet-nginx:puppet4`
+`14.04:jfryman-nginx:puppet4`
+`16.04:puppet-nginx:puppet4`
+`16.04:jfryman-nginx:puppet4`
+`14.04:puppet-nginx:puppet5`
+`14.04:jfryman-nginx:puppet5`
+`16.04:puppet-nginx:puppet5`
+`16.04:jfryman-nginx:puppet5`
