@@ -1,7 +1,7 @@
 class sc_nginx::supervisor(
 ){
 
-  include sc_supervisor
+  include supervisord
   include nginx
 
   file { ['/etc/init/nginx.conf', '/etc/init.d/nginx']:
