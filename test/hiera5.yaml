@@ -9,3 +9,5 @@ hierarchy:
     path: override.yaml
   - name: Modul Data
     path: module.yaml
+  - name: Common Data
+    path: common.yaml
