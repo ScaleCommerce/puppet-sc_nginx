@@ -6,14 +6,14 @@ class sc_nginx::supervisor(
 
   file { ['/etc/init/nginx.conf', '/etc/init.d/nginx']:
     ensure => absent,
-    require => Package[$nginx::package_name],
+    require => Package['nginx'],
   }
 
   supervisord::program { 'nginx':
     command     => "/usr/sbin/nginx -g 'daemon off; master_process on;'",
     autostart   => true,
     autorestart => true,
-    require     => Package[$nginx::package_name],
+    require     => Package['nginx'],
     before      => Service['nginx'],
   }~>
   # reload nginx config only if startet for the first time
