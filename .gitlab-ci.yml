@@ -2,7 +2,7 @@ stages:
   - Puppet 3
   - Puppet 4
 
-14.04:puppet-nginx:
+14.04:puppet-nginx:puppet3:
   stage: Puppet 3
   image: scalecommerce/base:0.6
   script:
@@ -16,7 +16,7 @@ stages:
   - inspec exec test/inspec/sc_nginx.rb
   - inspec exec test/inspec/sc_nginx_override.rb
 
-14.04:jfryman-nginx:
+14.04:jfryman-nginx:puppet3:
   stage: Puppet 3
   image: scalecommerce/base:0.6
   script:
@@ -30,7 +30,7 @@ stages:
   - inspec exec test/inspec/sc_nginx.rb
   - inspec exec test/inspec/sc_nginx_override.rb
 
-16.04:puppet-nginx:
+16.04:puppet-nginx:puppet3:
   stage: Puppet 3
   image: scalecommerce/xenial:1.0
   script:
@@ -44,7 +44,7 @@ stages:
   - inspec exec test/inspec/sc_nginx.rb
   - inspec exec test/inspec/sc_nginx_override.rb
 
-16.04:jfryman-nginx:
+16.04:jfryman-nginx:puppet3:
   stage: Puppet 3
   image: scalecommerce/xenial:1.0
   script:
@@ -58,7 +58,7 @@ stages:
   - inspec exec test/inspec/sc_nginx.rb
   - inspec exec test/inspec/sc_nginx_override.rb
 
-14.04:puppet-nginx:
+14.04:puppet-nginx:puppet4:
   stage: Puppet 4
   image: scalecommerce/base:0.6
   script:
@@ -73,7 +73,7 @@ stages:
   - inspec exec test/inspec/sc_nginx.rb
   - inspec exec test/inspec/sc_nginx_override.rb
 
-14.04:jfryman-nginx:
+14.04:jfryman-nginx:puppet4:
   stage: Puppet 4
   image: scalecommerce/base:0.6
   script:
@@ -88,7 +88,7 @@ stages:
   - inspec exec test/inspec/sc_nginx.rb
   - inspec exec test/inspec/sc_nginx_override.rb
 
-16.04:puppet-nginx:
+16.04:puppet-nginx:puppet4:
   stage: Puppet 4
   image: scalecommerce/xenial:1.0
   script:
@@ -103,7 +103,7 @@ stages:
   - inspec exec test/inspec/sc_nginx.rb
   - inspec exec test/inspec/sc_nginx_override.rb
 
-16.04:jfryman-nginx:
+16.04:jfryman-nginx:puppet4:
   stage: Puppet 4
   image: scalecommerce/xenial:1.0
   script:
