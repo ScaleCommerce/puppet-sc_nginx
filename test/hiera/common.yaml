@@ -1,8 +1,3 @@
 ---
 classes:
   - supervisord
-
-supervisord::service_manage: false
-supervisord::package_provider: pip
-supervisord::nodaemon: false #in gitlab-runner containers supervdirosd musst be a daemon!
-supervisord::run_path: /dev/shm
