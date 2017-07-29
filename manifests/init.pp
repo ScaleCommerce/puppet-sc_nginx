@@ -48,7 +48,7 @@ class sc_nginx (
 
   # this is only needed as a fix for jfryman-nginx module [deprecated]
   if defined('nginx::resource::vhost') {
-    Class['apt::update'] -> Package[$nginx::package_name] -> Nginx::Resource::Vhost <| |>
+    Class['apt::update'] -> Package['nginx'] -> Nginx::Resource::Vhost <| |>
     ensure_resources('nginx::resource::vhost', hiera_hash('nginx::nginx_vhosts', {}), hiera_hash('nginx::nginx_vhosts_defaults', {}))
   }
 }
