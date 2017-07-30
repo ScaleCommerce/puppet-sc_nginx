@@ -1,3 +1,4 @@
+[![build status](https://gitlab.scale.sc/sc-puppet/puppet-sc_nginx/badges/master/build.svg)](https://gitlab.scale.sc/sc-puppet/puppet-sc_nginx/commits/master)
 # sc_nginx
 
 #### Table of Contents
