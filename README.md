@@ -16,7 +16,7 @@ ScaleCommerce Wrapper Module for puppet-nginx module. Manages Supervisord.
 
 ## Module Description
 
-This module uses hiera to configure supervisord and nginx. We're using upstream modules [voxpupuli/puppet-nginx](https://github.com/voxpupuli/puppet-nginx) and [ajcrowe/puppet-supervisord](https://github.com/ajcrowe/puppet-supervisord). This is compatible with Ubuntu 14.04, Ubuntu 16.04, Puppet 3, Puppet 4, Puppet 5.
+This module uses hiera to configure supervisord and nginx. We're using upstream modules [voxpupuli/puppet-nginx](https://github.com/voxpupuli/puppet-nginx) and [ajcrowe/puppet-supervisord](https://github.com/ajcrowe/puppet-supervisord). This module is compatible with Ubuntu 14.04, Ubuntu 16.04, Puppet 3, Puppet 4, Puppet 5.
 
 ## Setup
 
@@ -34,7 +34,7 @@ Check out our solultion for Puppet-Hiera-Roles (https://github.com/ScaleCommerce
 
 ## Usage
 
-Put this into your node.yaml or role.yaml.
+Put this into your node.yaml or role.yaml. This module supports merging of configuration (i.e. vhosts) from all hierarchy levels. The upstream module `voxpupuli/puppet-nginx` currently uses automatic parameter lookup, which doesn't support that  (https://github.com/voxpupuli/puppet-nginx/issues/614, https://docs.puppet.com/hiera/3.3/puppet.html#automatic-parameter-lookup).
 
 ```
 ---
@@ -43,7 +43,7 @@ classes:
 
 ```
 
-Check out hiera config examples in [](test/hiera/module.yaml.puppet-nginx)
+Check out hiera config examples in [test/hiera/module.yaml.puppet-nginx](test/hiera/module.yaml.puppet-nginx)
 
 ## Testing
 
@@ -74,14 +74,25 @@ gitlab-ci-multi-runner-sc exec docker --docker-volumes `pwd`:/tmp/local-working-
 ```
 
 The following tests are available:
+
 `14.04:jfryman-nginx:puppet3`
+
 `16.04:puppet-nginx:puppet3`
+
 `16.04:jfryman-nginx:puppet3`
+
 `14.04:puppet-nginx:puppet4`
+
 `14.04:jfryman-nginx:puppet4`
+
 `16.04:puppet-nginx:puppet4`
+
 `16.04:jfryman-nginx:puppet4`
+
 `14.04:puppet-nginx:puppet5`
+
 `14.04:jfryman-nginx:puppet5`
+
 `16.04:puppet-nginx:puppet5`
+
 `16.04:jfryman-nginx:puppet5`
