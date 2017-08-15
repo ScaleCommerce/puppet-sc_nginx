@@ -26,7 +26,6 @@ This module uses hiera to configure supervisord and nginx. We're using upstream 
 * nginx
 * supervisord
 
-
 ### Beginning with sc_nginx
 
 You will need a working hiera-Setup (https://docs.puppetlabs.com/hiera/3.1/complete_example.html).
