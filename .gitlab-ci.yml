@@ -1,3 +1,5 @@
+image: scalecommerce/xenial:1.11
+
 stages:
   - Puppet 5
   - Puppet 6
