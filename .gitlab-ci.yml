@@ -40,4 +40,4 @@ stages:
 push2github:
   stage: push2github
   script:
-    - git push -f --quiet --mirror https://$GITHUB_TOKEN@github.com/ScaleCommerce/puppet-sc_nginx.git
+    - git push --quiet --mirror https://$GITHUB_TOKEN@github.com/ScaleCommerce/puppet-sc_nginx.git
